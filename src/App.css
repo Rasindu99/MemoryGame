@@ -1,6 +1,7 @@
 .App {
   max-width: 860px;
   margin: 40px auto;
+  position: relative;
 }
 
 button {
@@ -17,6 +18,7 @@ button {
 button:hover {
   background: #c23866;
   color: #fff;
+  z-index: 205;
 }
 
 .card-grid {
@@ -24,4 +26,39 @@ button:hover {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 20px;
+}
+
+.won {
+  height: 100%;
+  width: 100%;
+  background: rgba(196, 188, 200, 0.8);
+  position: relative;
+  padding: 5px;
+  z-index: 200;
+  position: absolute;
+  top: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
+
+.won p {
+  position: absolute;
+  top: 25%;
+  font-size: 50px;
+  font-weight: 500;
+  color: #c23866;
+}
+
+.won button {
+  color: #c23866;
+  cursor: pointer;
+  border: 2px solid #c23866;
+}
+
+.won button:hover {
+  background: #fff;
+  color: #9c1f49;
+  z-index: 205;
 }

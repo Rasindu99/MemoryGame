@@ -20,6 +20,7 @@ function App() {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
 
   // shuffle cards - ( this function does - duplicate card , sort them in a random order , assign a index)
   const shuffleCards = () => {
@@ -35,6 +36,11 @@ function App() {
   //handle Choice
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
+
+  const playAgain = () => {
+    setGameWon(false);
+    shuffleCards();
   }
 
   useEffect(() => {
@@ -53,6 +59,7 @@ function App() {
           })
         })
         console.log('matched');
+
         resetTurn();
       } else {
         console.log('Not matched');
@@ -61,6 +68,12 @@ function App() {
 
     }
   }, [choiceOne, choiceTwo]);
+
+  useEffect(() => {
+    if (cards.length > 0 && cards.every((card) => card.matched)) {
+      setGameWon(true); // Show the popup when all cards are matched
+    }
+  }, [cards]);
 
   console.log(cards);
 
@@ -96,6 +109,15 @@ function App() {
       </div>
 
       <p>Turns: {turns}</p>
+
+      {gameWon && (
+        <div className="won">
+          <p>Won !!!</p>
+          <button onClick={playAgain} className="play-again-button">
+            Play Again
+          </button>
+        </div>
+      )}
     </div>
   );
 }
