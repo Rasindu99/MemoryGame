@@ -93,7 +93,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Magic Match</h1>
+      <h1>Memory Quest</h1>
       <button onClick={shuffleCards}>New Game</button>
 
       <div className='card-grid'>
@@ -112,10 +112,11 @@ function App() {
 
       {gameWon && (
         <div className="won">
-          <p>Won !!!</p>
+          <p>You Won !!!</p>
           <button onClick={playAgain} className="play-again-button">
             Play Again
           </button>
+          <h5>{turns} Used</h5>
         </div>
       )}
     </div>

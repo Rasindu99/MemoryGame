@@ -5,6 +5,7 @@ body{
   margin: 0;
   font-size: 1.5rem;
   text-align: center;
-  background: #1b1523;
+  background: url('/public/image/background.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: #fff
 }
