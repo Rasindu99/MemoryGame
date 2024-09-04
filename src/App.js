@@ -26,7 +26,8 @@ function App() {
     const shuffledCards = [...cardImages, ...cardImages] //duplicate each card then save them (total cards - 12) in new variable
       .sort(() => Math.random() - 0.5)
       .map((card) => ({...card, id: Math.random() }));
-
+      setChoiceOne(null);
+      setChoiceTwo(null);
       setCards(shuffledCards);
       setTurns(0);
   }
@@ -37,9 +38,10 @@ function App() {
   }
 
   useEffect(() => {
-    setDisabled(true);
+    
     if(choiceOne && choiceTwo){
-      
+      setDisabled(true);
+
       if(choiceOne.src === choiceTwo.src){  // compare if and only if both choices have made
         setCards( prevCards => {
           return prevCards.map(card => {
@@ -70,6 +72,11 @@ function App() {
     setDisabled(false);
   }
 
+  //start game automatically
+  useEffect(() => {
+    shuffleCards();
+  },[]);
+
 
   return (
     <div className="App">
@@ -87,6 +94,8 @@ function App() {
           />
         ))}
       </div>
+
+      <p>Turns: {turns}</p>
     </div>
   );
 }
