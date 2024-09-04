@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import SingleCard from './components/SingleCard';
 
 // i am creating card array outSide the component , So its wont get recreated every time component refresh
 
@@ -16,6 +17,8 @@ const cardImages = [
 function App() {
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
 
   // shuffle cards - ( this function does - duplicate card , sort them in a random order , assign a index)
   const shuffleCards = () => {
@@ -27,7 +30,10 @@ function App() {
       setTurns(0);
   }
 
-  console.log(cards, turns);
+  //handle Choice
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+  }
 
 
   return (
@@ -37,12 +43,11 @@ function App() {
 
       <div className='card-grid'>
         {cards.map(card => (
-          <div className='card' key={card.id}>
-            <div>
-              <img className='front' src={card.src} alt='card front'/>
-              <img className='back' src='/image/cover.png' alt='card back'/>
-            </div>
-          </div>
+          <SingleCard 
+            card={card} 
+            key={card.id}
+            handleChoice={handleChoice}
+          />
         ))}
       </div>
     </div>
